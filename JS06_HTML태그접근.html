@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3> 1.getElementbyId()  </h3>
+    <p> - id인자를 통해 태그 객체를 가져오는 , JAvaScript 보편적으로 활용됨!</p>
+
+
+    <script>
+        var div1 = document.getElementById('div1');
+        var div1_h2 = document.getElementById('div1_h2');
+        var div1_p1 = document.getElementById('div1_p1');
+
+        console.log(div1);
+        console.log(div1_h2);
+        console.log(div1_p1);
+
+        document.write('div1 :' +div1 + '<hr><br>');
+        document.write('div1 HTML :' + div1.innerHTML + '<hr><br>');
+        document.write('div1 TEXT :' + div1.innerText + '<hr><br>');
+
+    </script>
+    <hr><br>
+
+    <h3>2. getElementByName() : 이름으로 가져오기</h3>
+    <p> - name을 통해서 태그 객체'들'을 기쟈엄</p>
+    <p> name은 중복해서 사용가능한 요소 라디오박스 체크</p>
+    <script>
+        var divs = document.getElementsByName('div');
+        var h2 = document.getElementsByName('div2_h2_name');
+        var p1 = document.getElementsByName('div2_p1_name');
+
+        document.write('div1 : ' + divs[0] + '<br>' )
+        document.write('div2 : ' + divs[0] + '<br>' )
+        document.write('div2_h2_name: ' + h2[0] + '<br>' )
+        document.write('div2_p1_name : ' + p1[0] + '<br>' )
+        document.write('없는 태그 : ' + p1[1] + '<br>' )
+
+        for(let element of divs){
+            document.write('div : ' + element.innerText + '<br>')
+        }
+        for(let i = 0; i < divs.length; i++){
+            document.write('div : ' + divs[i].innerText + '<br>')
+        }
+
+    </script>
+    <hr><br>
+
+    <h3> 3. get</h3>
+
+    <script>
+
+        var h2Array = document.getElementsByTagName('h2');
+        console.log(h2Array);
+
+        for(let i = 0; i <h2Array.length; i++){
+            document.write('h2 : ' + h2Array[i].innerText + '<br>') 
+            h2Array[i].style.color = '#0000ff';
+        }
+
+
+    </script>
+
+
+
+    <script>
+        var divArray = document.getElementsByClassName('div_class');
+        console.log(divArray);
+
+        for(let i = 0; i< divArray.length; i++){
+            document.write('div_class : ' + divArray[i].innerText + '<br>')
+
+        }
+
+    </script>
+
+    <script>
+        var div1 = document.querySelector('div1_class');
+        console.log('div1 : ' + div1);
+
+        for(let i = 0; i< div1.length; i++){
+            document.write('div1 : ' + div1[i].innerHTML + '<br>')
+
+        }
+
+    </script>
+    <hr><br>
+
+    <script>
+     var divArray = document.querySelectorAll('.div1_class');
+        console.log('divArray : ' + divArray);
+
+        for(let i = 0; i< divArray.length; i++){
+            document.write('divArray ['+ (i+1) +'] :' + divArray[i].innerHTML + '<br>')
+
+        }
+
+
+
+    </script>
+
+    <form action="#" name="formName" id="formId"><br>
+        <input type="text" name="inputId" value="test1"><br>
+        <input type="text" name="inputName" value="홍길동"><br>
+        <input type="sumbit"  value="제출"><br>
+    </form>
+       
+    <script>
+
+        document.write('inputID 값 : ' + document.forms.formID.inputID.value + '<br>');
+        document.write('inputID 값 : ' + document.forms.formID.inputName.value + '<br>');
+
+    </script>
+
+    <h3> 7</h3>
+    <div id="test1">
+
+
+    </div>
+    <div id="test2">
+
+
+    </div>
+
+    <script>
+        var test1 = document.getElementById('test1');
+        test1.innerHTML = 'h'
+
+
+
+        var test2 = document.getElementById('test1');
+
+
+        
+    </script>
+
+
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+</body>
+</html>

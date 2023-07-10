@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="test1(member);"> 실행1 </button>
+    <button onclick="test2(user);"> 실행2 </button>
+    <div id="div1" style="height: 300px;"></div>
+
+    <script>
+        var member = new Object();
+        var member2 = {};
+        document.write(typeof (member1) + '<br>');
+        document.write(typeof (member2) + '<br>');
+
+
+        var member = {
+
+            name: 'ㅎㅇㄴㅁ',
+            age: 24,
+            phone: '012-0312-1233',
+            hobby: ['ㅁㄴㄹ', 'ㅁㄴㄻ'],
+        };
+
+        class User {
+            constructor(name, age, tel) {
+                this.name = name;
+                this.age = age;
+                this.phone = phone;
+            }
+        }
+        var user = new User('chlrlf', 21, '010-4124-12412')
+        user.name = 'asdga';
+
+        function test1() {
+            var div1 = document.getElementById('div1');
+            div1.innerHTML = '객ㅊ : ' + member + '<br>';
+            div1.innerHTML += '이름 :' + member['name'] + '<br>';
+            div1.innerHTML += '나이 :' + member['age'] + '<br>';
+            div1.innerHTML += '전번 :' + member['phone'] + '<br>';
+            div1.innerHTML += '취미 :' + member['hobby'] + '<br>';
+        }
+
+    </script>
+    <button onclick="test3(member2);">실행1</button>
+    <button onclick="test4(user2);">실행2</button>
+    <div id="div2"></div>
+    <script>
+        var member2 = {
+            name: 'ㅂㅈㄷㄱ',
+            age: 31,
+            phone: '0123-1123-1213',
+            print: function (element) {
+                element.innerHTML += '이름 :' + this.name + '<br>';
+                element.innerHTML += '나이 :' + this.age + '<br>';
+                element.innerHTML += '전번 :' + this.phone + '<br>';
+
+            }
+        };
+
+        class User2 {
+            constructor(name,age,phone){
+                this.name = name;
+                this.age = age;
+                this.phone = phone;
+            }
+            set name(name) {
+                this.name = val + '님';
+
+            }
+            get name() {
+                return '[' + this.name + ']';
+
+            }
+
+            toString(){
+                return this.name + ', ' + this.age + ', ' + this.phone;
+                ELELSKA.innerHTML += '이름 :' + this.name +
+            }
+
+
+        }
+        function test3() {
+            var div2 = document.getElementById('div2');
+            member2.print(div2);
+        }
+        function test4() {
+            var div2 = document.getElementById('div2');
+            div2.innerHTML = user2.toString() + '<br>';
+            user2.print(div2);
+        }
+    </script>
+
+
+
+
+
+</body>
+
+</html>

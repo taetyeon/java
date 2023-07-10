@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>내장함수</h1>
+    <hr>
+    <h3>escape(), unescape()</h3>
+    <p> - 알파벳 대소문자, 0~9숫자, @*-_+./를 제외한 모든 문자열 인코딩/디코딩 함수</p>
+    <p> - 사용처 : 보안용도로 사용자가 특수문자를 사용하지 못하도록 막을 때 사용. </p>
+    <input type="text" id="input1"><br>
+    <button onclick="test1();">버튼</button>
+    <div id="div1">결과 값</div>
+    <script>
+        function test1() {
+            var inputValue = document.getElementById('input1').value;
+            var encodingValue = escape(inputValue);
+            var decodingvalue = unescape(encodingValue);
+            var div1 = document.getElementById('div1');
+            div1.innerHTML = '원본 : ' + inputValue + '<br>';
+            div1.innerHTML += '인코딩 : ' + encodingValue + '<br>';
+            div1.innerHTML += '디코딩 : ' + decodingvalue + '<br>';
+        }
+    </script>
+    <hr><br>
+</body>
+</html>

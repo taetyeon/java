@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            border: 1px black solid;
+            width: 400px;
+            height: 80px;
+            background-color: rgb(241, 241, 241);
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <button id="btn1">버튼1</button>
+    <button onclick="test1();">
+    <div id="div1"></div>
+
+    <script>
+        function test1(var1, var2){
+            document.getElementById(var1).innerHTML= var2;
+        }
+        document.getElementById('btn2').onclick= function(){
+            test3('div5',)
+        }
+  
+    </script>
+    <hr><br>
+
+    <h3>3.</h3>
+    <button onclick="test4()">버튼</button>
+    <div div="div6"></div>
+    <script>
+        function test4(){
+            var div6 = document.getElementById('div6');
+            div6.innerHTML += getRandomValue() + ', ';
+        }
+        function getRandomValue() {
+            return Math.floor(Math.random() * 100 + 1 );
+
+        }
+    </script>
+<h3>4.3 가변인자를 가지는 함수</h3>
+<button onclick="test5()">버튼</button>
+<div id="div7"></div>
+<script>
+    function test5(){
+        var sum = sumAll(1,2,3,4,5,getRandomValue());
+        var div6 = document.getElementById('div7');
+        div6.innerHTML += 'sum :' + sum + '<br>'; 
+
+    }
+    function sumAll(){
+        var sumValue = 0;
+        for(let i = 0; i < arguments.length; i++){
+            sumValue += Number(arguments[i]);
+
+        }
+        return sumValue;
+
+    }
+</script>
+<hr><br>
+<h3>4.4 </h3>
+<button>버튼1</button>
+<button>버튼2</button>
+<button>버튼3</button>
+<div id="div8"></div>
+
+<script>
+    
+
+
+    function getRandomValue() {
+            return Math.floor(Math.random() * 100 + 1 );
+
+        }
+    
+</script>
+<h3>5. 람다 표기법 (함수형 프로그램) - ES6문법</h3>
+    <p> - ES6부터 람다 표기법이 등장하여 '=>' 로 함수를 선언하고 호출할수 있다.</p>
+    <p> - 현재는 기존의 문법 혼용되어 사용되고 있으나 Java와 다르게 JS 에서는 점차 표준화되는 중</p>
+    <button onclick="lamdaFunc1()">함수1</button>
+    <button onclick="alert(lamdaFunc2(5,7))">함수2</button>
+    <script>
+        var testFunc = function() {
+            alert('test');
+        }
+        var lamdaFunc1 =  () => {
+            alert('test');
+        }
+        var testFunc2 =  function(a,b)  {
+            return a+b;
+        }
+        var lamdaFunc2 =  (a,b) => {
+            return a+b;
+        }
+        var lamdaFunc3 = (a,b) => a + b;
+    </script>
+
+
+
+
+
+
+</body>
+</html>
