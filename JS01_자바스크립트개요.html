@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Basic</title>
+</head>
+<body>
+    <h1>자바 스크립트의 개요</h1>
+    <div> - 웹 브라우저에서 HTML문서에 대한 동적로직 처리가 가능한 인터프리터 방식의 언어</div>
+    <div> - 객체지향 문법을 지원하고, 실질적으로는 절차지향으로도 프로그래밍이 가능한 언어</div>
+    <div> - 실제 동작하는 방식은 브라우저에 존재하는 웹 엔진(크롬 엔진)을 통해 파싱 및 실행 가능</div>
+    <br>
+
+    <h3>자바 스크립트의 선언방법</h3>
+    <div> - HTML 파일 내에 script 태그를 활용하여 Javascript 영역을 생성함</div>
+    <div> - type="text/javascript"를 포함 해야 하지만 default가 js라 생략 가능</div>
+    <br>
+
+    <!-- HTML 영역 -->
+    <script type="text/javascript">
+        // <h3>테스트!!</h3>
+        document.write('자바 스크립트 영역');
+    </script>
+    <hr><br>
+
+    <h3>자바스크립트 코드의 위치</h3>
+    <div> - 페이지 내에서 어디든 가능하고 필요에 따라 사용자가 적절한 배치가 필요하다.</div>
+    <script>
+        document.write('body 영역에서 사용하는 방법이지만, 필요에 따라 위아래 배치 가능하다.');
+    </script>
+    <hr><br><br>
+
+    <h2>자바스크립트 작성 유형</h2>
+    <hr>
+
+    <h3>1. internal (내부) 방식</h3>
+    <div> - 일반적으로 html 내부에 선언하는 방식이다.</div>
+    <script>
+        document.write('이미 사용하고 있던 방식의 internal 방식입니다.');
+    </script>
+    <hr><br>
+
+    <h3>2. inline 방식</h3>
+    <div> - html 태그의 특정 이벤트 핸들러 영역(on~~~~)에 javascript 직접 작성하는 방법</div>
+
+    <h3>예시1 : 인라인 방식으로 HTML 속성 내부에 작성하는 방법</h3>
+    <div>-> 아주 짧게 쓰는 것을 권장. 주로 함수 호출만 사용됨</div>
+    <button onclick="javascript:alert('인라인 방식1');" >버튼1</button>
+    <button onclick="alert('인라인 방식2');" >버튼2</button>
+    <hr>
+
+    <h3>예시2 : 미리 선언한 함수를 통해 호출하는 방법 ★★★★★</h3>
+    <button onclick="test(this);">버튼3</button>
+    <script>
+        function test(element){
+            alert('test로 호출된 인라인 방식의 함수입니다. ' + element.innerHTML)
+        }
+    </script>
+    <hr><br>
+
+    <h3>3. External(외부)에서 호출하는 방법</h3>
+    <div> - 자바스크립트 코드를 외부에서 작성하여 로드하는 방식</div>
+    <div> - 파일 확장자는 주로 .js로 끝남 단, .js가 아니어도 로드 가능함</div>
+
+    <h3>사용법</h3>
+    <script src="JS01_JSexternal.js">
+        // document.write('외부에서 불러온 파일입니다.');
+        // function externalTest(){
+        //     alert('외부에서 불러온 externalTest 함수입니다.');
+        // }
+    </script>
+    <br>
+    <button onclick="externalTest();">외부 함수 호출</button>
+    <hr><br>
+
+    
+    <h3>자바스크립트를 지원하지 않는 경우</h3>
+    <p> noscript를 통해 표현</p>
+    <noscript>
+        해당 브라우저는 스크립트를 지원하지 않습니다!
+    </noscript>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
+
