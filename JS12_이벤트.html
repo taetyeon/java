@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            height: 300px;
+            background-color: lightgray;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>이벤트란?</h1>
+    <p> - 사용자나 운영체제(브라우저)로 부터 특정한 입력값을 전달받아 발생하는 메커니즘</p>
+    <p> - 이벤트를 처리하기 위해 Call-back 함수를 구현하여 이벤트 로직을 처리</p>
+    <h2>이벤트 속성</h2>
+    <b>input(입력창) 태그관련 이벤트</b><br>
+    focus : input태그에 focus되었을때 발생 * 주의 blur가 같이 처리됨 -> 무한루프가 됨<br>
+    blur : input태그의 focus가 사라졌을때 발생<br>
+    change : input태그의 value속성의 값이 변경됐을때 발생 * select태그 이벤트에 많이 사용<br>
+    submit : form태그에서 submit타입을 클릭했을때 발생 form태그로 데이터전송시 발생<br>
+    reset : form태그에서 reset타입을 클릭했을때 발생<br>
+    <hr><br>
+    <b>mouse관련 이벤트</b><br>
+    click : 마우스 좌클릭했을때 발생<br>
+    dbclick : 마우스 더블클릭했을때 발생<br>
+    mouseenter : 지정한 영역안에 마우스가 들어왔을때 발생<br>
+    mouseleave : 지정한 영역안에서 마우스가 나갔을때 발생<br>
+    <hr><br>
+    <b>key관련 이벤트</b><br>
+    keyup : 키가 올라왔을때 발생<br>
+    keydown : 키가 내려갔을때 발생<br>
+    keypress : 키가 눌렸을때 발생<br>
+    <hr><br>
+    <b>윈도우창 관련 이벤트</b><br>
+    load : 페이지의 태그들이 다 로드됐을때 발생 * 페이지관련 이벤트<br>
+    resize : 윈도우 크기가 조정됐을때 발생<br>
+    scroll : 창에서 스크롤이 조정됐을때 발생<br>
+    <h1>BOM (Browser Obejct Model)</h1>
+    <hr>
+    <h3>Screen 객체</h3>
+    <p> - 웹 브라우저 화면이 아닌 운영체제 화면의 속성을 가지는 객체</p>
+    <div id="div1"></div>
+    <script>
+        var div1 = document.getElementById('div1');
+        div1.innerHTML += '화면높이 : ' + screen.height + '<br>'
+        div1.innerHTML += '화면너비 : ' + screen.width + '<br>'
+        div1.innerHTML += '실제 가용 가능 화면 높이 : ' + screen.availHeight + '<br>'
+        div1.innerHTML += '실제 가용 가능 화면 너비 : ' + screen.availWidth + '<br>'
+        div1.innerHTML += '사용 가능한 색상 수 : ' + screen.colorDepth + '<br>'
+        div1.innerHTML += '한 픽셀당 비트수 : ' + screen.pixelDepth + '<br>'
+    </script>
+    <hr><br>
+2:16
+<h3>loaction 객체</h3>
+    <p> - 브라우저 주소 표시줄과 관련된 객체</p>
+    <div id="div2"></div>
+    <script>
+        var div2 = document.getElementById('div2');
+        for (key in location) {
+            div2.innerHTML += key + ' : ' + location[key] + '<br>';
+        }
+    </script>
+    <hr><br>
+    <hr><br>
+    <h3>히스토리 객체</h3>
+    <p> - 브라우저 이전 페이지 이동 정보를 가진 객체</p>
+    <div id="div3"></div>
+    <script>
+        var div3 = document.getElementById('div3');
+        for (key in history) {
+            div3.innerHTML += key + ' : ' + history[key] + '<br>';
+        }
+    </script>
+    <hr>
+    <h3>이 전</h3>  
+    <button onclick="history.go(-1)">이전 페이지</button>
+    <button onclick="history.forward(-1)">이전 페이지</button>
+    <hr>
+    <h3>이 전</h3>  
+    <button onclick="history.go(-1)">다음 페이지</button>
+    <button onclick="history.forward(-1)">다음 페이지</button>
+    <hr>
+    <h3>navigator 객체</h3>
+    <p> - 웹페이지를 실행하는 브라우저의 정보를 가진 객체</p>
+    <div id="div4" style="height: auto;"></div>
+    <script>
+        var div4 = document.getElementById('div4');
+        for (key in navigator) {
+            div4.innerHTML += key + ' : ' + navigator[key] + '<br>';
+            console.log(navigator[key]);
+        }
+    </script>
+    <hr><br>
+    
+
+
+
+
+
+
+</body>
+</html>

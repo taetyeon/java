@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>내장 객체</h1>
+    <p> - 태그나 스타일, 데이터 처리에 관련된 객체</p>
+    <hr>
+    <h3>String 객체의 HTML 관련 메소드</h3>
+    <div id="div1"></div>
+    <script>
+        var div1 = document.getElementById("div1");
+        var str1 = "Hello JavaScript World!!";
+        var str2 = new String("Hello JavaScript World!!");
+        div1.innerHTML += str1 + "<br>";
+        div1.innerHTML += str2 + "<br><br>";
+        div1.innerHTML += " anchor() : " + str1.anchor() + "<br>";
+        div1.innerHTML += " big() : " + str1.big() + "<br>";
+        div1.innerHTML += " bold() : " + str1.bold() + "<br>";
+        div1.innerHTML += " fontcolor('red') : " + str1.fontcolor('red') + "<br>";
+        div1.innerHTML += " fontsize(15) : " + str1.fontsize(15) + "<br>";
+        div1.innerHTML += " italics() : " + str1.italics() + "<br>";
+        div1.innerHTML += " link() : " + str1.link("http://www.naver.com") + "<br>";
+        div1.innerHTML += " small() : " + str1.small() + "<br>";
+        div1.innerHTML += " strike() : " + str1.strike() + "<br>";
+        div1.innerHTML += " sub() : " + str1.sub() + "<br>";
+        div1.innerHTML += " sup() : " + str1.sup() + "<br>";
+    </script>
+    <hr><br>
+
+    <h3>Number 객체의 HTML 관련 메소드</h3>
+    <div id="div2"></div>
+    <script>
+
+        var num1 =123;
+        var num2 =123.45678933333;
+        var num3 =new Number(1234);
+        var str ='';
+
+        str += 'num1 원본 : ' + num1 + '<br>';
+        str += 'num2 원본 : ' + num2 + '<br>';
+        str += 'num3 원본 : ' + num3 + '<br>';
+
+
+        str += '지수 형태 <br>'
+        str += 'num1 원본 : ' + num2.toExponential() + '<br>';
+        str += 'num2 원본 : ' + num3.toExponential() + '<br>';
+
+        str += '지수 형태 <br>'
+        str += 'num1 원본 : ' + num1.toFixed() + '<br>';
+        str += 'num2 원본 : ' + num2.toFixed() + '<br>';
+        str += 'num1 원본 : ' + num1.toFixed() + '<br>';
+        str += 'num2 원본 : ' + num2.toFixed() + '<br>';
+
+        str += '지수 형태 <br>'
+        str += 'num1 원본 : ' + num1.toPrecision() + '<br>';
+        str += 'num2 원본 : ' + num2.toPrecision() + '<br>';
+        str += 'num1 원본 : ' + num1.toPrecision() + '<br>';
+        str += 'num2 원본 : ' + num2.toPrecision() + '<br>';
+        
+     
+
+        document.getElementById('div2').innerHTML = str;
+
+       
+
+
+    </script>
+     
+
+    <script>
+        var str = '';
+        var date1 = new Date();
+        var date2 = new Date('2023-04.27');
+        var date3 = new Date('2023-04.27');
+        var date4 = new Date('2023-04.27');
+        var date5 = new Date('2023-04.27');
+        
+
+        for(var i = 1; i<=9; i++){
+            var vName ='date' + i;
+            var date = eval(vName);
+            str + vName + ' : ' + date + '<br>';
+        }
+
+        str += 'toLocale'
+
+        document.getElementById('div3').innerHTML += str;
+
+
+
+    </script>
+
+
+
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

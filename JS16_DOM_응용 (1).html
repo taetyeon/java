@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML 태그접근 응용</title>
+    <style>
+        div {
+            border: 1px black solid;
+            width: 500px;
+            height: 100px;
+            background-color: rgb(241, 241, 241);
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>HTML 응용 예제</h1>
+    <hr><br>
+
+    <h2>CSS 속성 변경하기</h2>
+
+    <h3>1. 속성 값으로 변경하는 방법</h3>
+    <button onclick="changeCSS();">버튼</button>
+    <div id="div1"></div>
+
+    <script>
+        var count = 0;
+
+        function changeCSS(){
+            var div1 = document.getElementById('div1');
+            var value = count % 3;
+
+            if(value == 0){
+                div1.style.backgroundColor = 'red';
+            } else if (value == 1) {
+                div1.style.backgroundColor = 'blue';
+            } else {
+                div1.style.backgroundColor = 'green';
+            }
+
+            div1.style.width = (100 * count)+100 + 'px';
+            div1.style.height = (50 * count)+50 + 'px';
+            div1.style.border = count + 'px solid black';
+            count++;
+        }
+    </script>
+    <hr><br>
+    
+    <h3>2. class를 통해 변경하는 방법</h3>
+    <button onclick="printClass();">버튼</button>
+    <br>
+    <style>
+        .display {
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .item_plain {
+            border: 1px solid black;
+        }
+
+        .item_plain:hover {
+            background-color: azure;
+            border: 1px solid black;
+        }
+
+        .item_selected {
+            border: 3px solid red;
+            background-color: greenyellow;
+        }
+    </style>
+    <button class="display item_plain" onclick="toggleClass(this);">사과</button>
+    <button class="display item_plain" onclick="toggleClass(this);">바나나</button>
+    <button class="display item_plain" onclick="toggleClass(this);">포도</button>
+    <div id="div2" style="height: 150px;"></div>
+
+    <script>
+        function toggleClass(element){
+            // 방법1. if문으로 추가, 삭제 한다.
+            // if(element.className.indexOf('item_plain') > 0){
+            //     element.classList.remove('item_plain');
+            //     element.classList.add('item_selected');
+            // }else{
+            //     element.classList.add('item_plain');
+            //     element.classList.remove('item_selected');
+            // }
+
+
+            // 방법2. 토글 메소드 사용 -> 알아서 반대 상태로 만들어 준다.
+            element.classList.toggle('item_plain'); 
+            element.classList.toggle('item_selected'); 
+        }
+
+        function printClass(){
+            var array = document.getElementsByClassName('display');
+            var str = '';
+            for(var i = 0; i < array.length; i++){
+                str += array[i].innerHTML +'(className) : ' + array[i].className + '<br>';
+                str += array[i].innerHTML +'(classList) : ' + array[i].classList + '<br>';
+            }
+
+            document.getElementById('div2').innerHTML = str;
+        }
+    </script>
+    <hr><br>
+
+    
+    <h3>태그의 속성 다루기</h3>
+    <p> - 태그의 모든 속성값(property= value, type ... )를 변경 할수 있다.</p>
+    입력란 : <input type="text" id="inputName" name="inputName" value="홍길동" placeholder="이름">
+
+    <button onclick="test1();">제출</button>
+    </form>
+    <button onclick="test2();">변경</button>
+    <div id="div3"></div>
+    <script>
+        function test1(){
+            var inputName = document.getElementById('inputName');
+            var div3 = document.getElementById('div3');
+            div3.innerHTML += inputName.value +'<br>';
+            inputName.value = null; // 입력값 초기화
+        }
+
+        function test2(){
+            var inputName = document.getElementById('inputName');
+            inputName.type = 'password';
+            inputName.placeholder = '비밀번호 입력';
+            inputName.value = '1234';
+            inputName.myValue = '참조값';
+        }
+    </script>
+    <hr><br>
+
+
+    <h2>Form 다루기</h2>
+    <hr>
+    <!-- https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Regular_expressions -->
+    <!-- https://hamait.tistory.com/342 -->
+
+    <h3>1. 정규식을 통한 특정 foramt 체크하는 방법</h3>
+    <p> - stringutil의 정규식을 활용하거나 fn_inputKey함수를 통해 포멧 체크 가능 </p>
+    <script src="JS17_stringutil.js"></script>
+
+    <label>이메일 형식 확인 : </label>
+    <input type="text" onkeyup="fn_inputKey(9, this);" />
+    <br><br>
+    <label>전화번호 형식 확인</label>
+    <input type="text" onkeyup="fn_inputKey(6, this);" />
+    <br><br>
+    <label>영문(ID) 형식 확인</label>
+    <input type="text" onkeyup="fn_inputKey(5, this);" />
+    <br><br>
+    <label>한글(이름) 형식 확인</label>
+    <input type="text" onkeyup="fn_inputKey(2, this);" />
+    <hr><br>
+
+    <h3>2. 회원가입 유효성 검사 방법</h3>
+    <p> - 일반적으로 보낼때 한번만 체크하는 방법도 활용됨</p>
+    <fieldset>
+        <legend>회원 가입</legend>
+        <form name="form1" action="#" method="get">
+            <label for="id">아이디</label>
+            <input type="text" id="id" name="id" placeholder="4글자 이상"><br>
+            <label for="id">이름</label>
+            <input type="text" id="name" name="name" placeholder="이름을 입력하세요."><br>
+            <label for="id">비밀번호</label>
+            <input type="password" id="pw1" name="pw1" placeholder="4자리 이상"><br>
+            <label for="id">비밀번호 확인</label>
+            <input type="password" id="pw2" placeholder="4자리 이상"><br>
+            <label for="id">전화번호</label>
+            <input type="text" id="tel" name="tel" placeholder="010-1234-5678"><br>
+            <button type="button" onclick="checkForm();">가입 요청</button>
+        </form>
+    </fieldset>
+    <div id="formResult"></div>
+    <script>
+        function checkForm(){
+            var div = document.getElementById('formResult');
+            regExp = /^[a-z]+[a-z0-9_-]{3,19}$/g;
+
+            // test = 정규식 확인하는 방법
+            if(form1.id.value < 4 || regExp.test(form1.id.value) == false){
+                div.innerHTML = '아이디를 다시 입력해주세요. <br>';
+                form1.id.select(); // id 객체에 포커싱이 간다.
+                return;
+            }
+
+            regExp = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|\s]/g;
+            if(form1.name.value.length <= 2 || regExp.test(form1.name.value) == false ){
+                div.innerHTML = '이름을 다시 입력해주세요. <br>';
+                form1.name.select(); // id 객체에 포커싱이 간다.
+                return;
+            }
+
+            // pw 유효성 체크
+            if (form1.pw1.value.length < 4 || form1.pw1.value != form1.pw2.value) {
+                div.innerHTML += '비밀번호를 다시 입력하세요! <br>';
+                form1.pw1.select();
+                form1.pw1.value = '';
+                form1.pw2.value = '';
+                return;
+            }
+
+            if (fn_regExp('tel').test(form1.tel.value) == false) {
+                div.innerHTML += '전화번호를 다시 입력하세요. <br>';
+                form1.tel.select();
+                return;
+            }
+
+            alert('회원가입에 성공하였습니다.');
+            form1.submit(); // 실제 서버에 전달하는 부분
+        }
+    </script>
+    <hr><br>
+
+
+    <h3>2. 체크박스(라디오) 버튼 응용</h3>
+    <input type="checkbox" name="hobby" value="game" id="game"> <label for="game">게임</label>
+    <input type="checkbox" name="hobby" value="music" id="music"> <label for="music">음악</label>
+    <input type="checkbox" name="hobby" value="movie" id="movie"> <label for="movie">영화</label>
+    <br>
+    <button onclick="test4();">제출</button>
+    <div id="div4"></div>
+    <script>
+        function test4() {
+            var hobbyList = document.getElementsByName('hobby');
+            var div = document.getElementById('div4');
+            var result = '';
+
+            for (var i = 0; i < hobbyList.length; i++) {
+                if (hobbyList[i].checked == true) {
+                    result += hobbyList[i].value + '<br>';
+                    hobbyList[i].checked = false;
+                }
+            }
+            div.innerHTML = result;
+        }
+    </script>
+    <hr><br>
+
+    <!-- https://chichi-story.tistory.com/18 -->
+    <h3>3. Select 다루기</h3> 
+    <p> - 대표적으로 주소 검색시의 시군구를 선택할때 다룬다.</p>
+    <select name="sido1" id="sido1">
+        <!-- <option>서울시</option>
+        <option>경기도</option> -->
+    </select>
+    <select name="gugun1" id="gugun1"></select>
+    <br>
+    <script>
+        var area0 = ["시/도 선택", "서울특별시", "인천광역시", "대전광역시", "광주광역시", "대구광역시", "울산광역시", "부산광역시", "경기도", "강원도", "충청북도", "충청남도", "전라북도", "전라남도", "경상북도", "경상남도", "제주도"];
+        var area1 = ["강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구", "금천구", "노원구", "도봉구", "동대문구", "동작구", "마포구", "서대문구", "서초구", "성동구", "성북구", "송파구", "양천구", "영등포구", "용산구", "은평구", "종로구", "중구", "중랑구"];
+        var area2 = ["계양구", "남구", "남동구", "동구", "부평구", "서구", "연수구", "중구", "강화군", "옹진군"];
+        var area3 = ["대덕구", "동구", "서구", "유성구", "중구"];
+        var area4 = ["광산구", "남구", "동구", "북구", "서구"];
+        var area5 = ["남구", "달서구", "동구", "북구", "서구", "수성구", "중구", "달성군"];
+        var area6 = ["남구", "동구", "북구", "중구", "울주군"];
+        var area7 = ["강서구", "금정구", "남구", "동구", "동래구", "부산진구", "북구", "사상구", "사하구", "서구", "수영구", "연제구", "영도구", "중구", "해운대구", "기장군"];
+        var area8 = ["고양시", "과천시", "광명시", "광주시", "구리시", "군포시", "김포시", "남양주시", "동두천시", "부천시", "성남시", "수원시", "시흥시", "안산시", "안성시", "안양시", "양주시", "오산시", "용인시", "의왕시", "의정부시", "이천시", "파주시", "평택시", "포천시", "하남시", "화성시", "가평군", "양평군", "여주군", "연천군"];
+        var area9 = ["강릉시", "동해시", "삼척시", "속초시", "원주시", "춘천시", "태백시", "고성군", "양구군", "양양군", "영월군", "인제군", "정선군", "철원군", "평창군", "홍천군", "화천군", "횡성군"];
+        var area10 = ["제천시", "청주시", "충주시", "괴산군", "단양군", "보은군", "영동군", "옥천군", "음성군", "증평군", "진천군", "청원군"];
+        var area11 = ["계룡시", "공주시", "논산시", "보령시", "서산시", "아산시", "천안시", "금산군", "당진군", "부여군", "서천군", "연기군", "예산군", "청양군", "태안군", "홍성군"];
+        var area12 = ["군산시", "김제시", "남원시", "익산시", "전주시", "정읍시", "고창군", "무주군", "부안군", "순창군", "완주군", "임실군", "장수군", "진안군"];
+        var area13 = ["광양시", "나주시", "목포시", "순천시", "여수시", "강진군", "고흥군", "곡성군", "구례군", "담양군", "무안군", "보성군", "신안군", "영광군", "영암군", "완도군", "장성군", "장흥군", "진도군", "함평군", "해남군", "화순군"];
+        var area14 = ["경산시", "경주시", "구미시", "김천시", "문경시", "상주시", "안동시", "영주시", "영천시", "포항시", "고령군", "군위군", "봉화군", "성주군", "영덕군", "영양군", "예천군", "울릉군", "울진군", "의성군", "청도군", "청송군", "칠곡군"];
+        var area15 = ["거제시", "김해시", "마산시", "밀양시", "사천시", "양산시", "진주시", "진해시", "창원시", "통영시", "거창군", "고성군", "남해군", "산청군", "의령군", "창녕군", "하동군", "함안군", "함양군", "합천군"];
+        var area16 = ["서귀포시", "제주시", "남제주군", "북제주군"];
+
+        // 1. 초기화 코드
+        var sido1 = document.getElementById('sido1');
+        for(var i = 0; i < area0.length; i++){
+            sido1.innerHTML += '<option>' + area0[i] + '</option>'
+        }
+        var gugun1 = document.getElementById('gugun1');
+        gugun1.innerHTML = '<option>시/군/구 선택</option>' 
+
+        // 2. event 처리 코드 - onchange
+        sido1.onchange = function(){
+            var sido1 = document.getElementById('sido1');
+            var gugun1 = document.getElementById('gugun1');
+            var areaName = 'area' + sido1.selectedIndex;
+            var area = eval(areaName); 
+            gugun1.innerHTML = ''; // 기존 option 초기화
+            for(var i = 0; i < area.length; i++){
+                gugun1.innerHTML += '<option>' + area[i] + '</option>'
+            }
+        }
+    </script>
+    <hr><br>
+
+    <h3>※ 주소는 카카오 api를 활용하는 것이 편리하다.</h3>
+    <!-- https://postcode.map.daum.net/guide -->
+    <input type="text" id="sample2_postcode" placeholder="우편번호">
+    <input type="button" onclick="sample2_execDaumPostcode()" value="우편번호 찾기"><br>
+    <input type="text" id="sample2_address" placeholder="주소"><br>
+    <input type="text" id="sample2_detailAddress" placeholder="상세주소">
+    <input type="text" id="sample2_extraAddress" placeholder="참고항목">
+
+    <!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
+    <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+        <img src="http://t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer"
+            style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()"
+            alt="닫기 버튼">
+    </div>
+
+    <script src="http://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+        // 우편번호 찾기 화면을 넣을 element
+        var element_layer = document.getElementById('layer');
+
+        function closeDaumPostcode() {
+            // iframe을 넣은 element를 안보이게 한다.
+            element_layer.style.display = 'none';
+        }
+
+        function sample2_execDaumPostcode() {
+            new daum.Postcode({
+                oncomplete: function (data) {
+                    // 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                    // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                    // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                    var addr = ''; // 주소 변수
+                    var extraAddr = ''; // 참고항목 변수
+
+                    //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                    if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                        addr = data.roadAddress;
+                    } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                        addr = data.jibunAddress;
+                    }
+
+                    // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                    if (data.userSelectedType === 'R') {
+                        // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                        // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                        if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+                            extraAddr += data.bname;
+                        }
+                        // 건물명이 있고, 공동주택일 경우 추가한다.
+                        if (data.buildingName !== '' && data.apartment === 'Y') {
+                            extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                        }
+                        // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                        if (extraAddr !== '') {
+                            extraAddr = ' (' + extraAddr + ')';
+                        }
+                        // 조합된 참고항목을 해당 필드에 넣는다.
+                        document.getElementById("sample2_extraAddress").value = extraAddr;
+
+                    } else {
+                        document.getElementById("sample2_extraAddress").value = '';
+                    }
+
+                    // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                    document.getElementById('sample2_postcode').value = data.zonecode;
+                    document.getElementById("sample2_address").value = addr;
+                    // 커서를 상세주소 필드로 이동한다.
+                    document.getElementById("sample2_detailAddress").focus();
+
+                    // iframe을 넣은 element를 안보이게 한다.
+                    // (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
+                    element_layer.style.display = 'none';
+                },
+                width: '100%',
+                height: '100%',
+                maxSuggestItems: 5
+            }).embed(element_layer);
+
+            // iframe을 넣은 element를 보이게 한다.
+            element_layer.style.display = 'block';
+
+            // iframe을 넣은 element의 위치를 화면의 가운데로 이동시킨다.
+            initLayerPosition();
+        }
+
+        // 브라우저의 크기 변경에 따라 레이어를 가운데로 이동시키고자 하실때에는
+        // resize이벤트나, orientationchange이벤트를 이용하여 값이 변경될때마다 아래 함수를 실행 시켜 주시거나,
+        // 직접 element_layer의 top,left값을 수정해 주시면 됩니다.
+        function initLayerPosition() {
+            var width = 300; //우편번호서비스가 들어갈 element의 width
+            var height = 400; //우편번호서비스가 들어갈 element의 height
+            var borderWidth = 5; //샘플에서 사용하는 border의 두께
+
+            // 위에서 선언한 값들을 실제 element에 넣는다.
+            element_layer.style.width = width + 'px';
+            element_layer.style.height = height + 'px';
+            element_layer.style.border = borderWidth + 'px solid';
+            // 실행되는 순간의 화면 너비와 높이 값을 가져와서 중앙에 뜰 수 있도록 위치를 계산한다.
+            element_layer.style.left = (((window.innerWidth || document.documentElement.clientWidth) - width) / 2 - borderWidth) + 'px';
+            element_layer.style.top = (((window.innerHeight || document.documentElement.clientHeight) - height) / 2 - borderWidth) + 'px';
+        }
+    </script>
+
+    <hr><br>
+
+    <h3>4. 무한 스크롤 해보기</h3>
+    <section>
+        <div class="box">
+            <p>
+                1번째 블록
+            </p>
+        </div>
+        <div class="box">
+            <p>
+                2번째 블록
+            </p>
+        </div>
+    </section>
+    <script>
+        var count = 2;
+        window.onscroll = function (e) {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                setTimeout(function () {
+                    var addContent = document.createElement("div");
+                    addContent.classList.add("box")
+                    addContent.innerHTML = `<p>${++count}번째 블록</p>`
+                    document.querySelector('section').appendChild(addContent);
+                }, 100)
+            }
+        }
+    </script>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+
+</html>

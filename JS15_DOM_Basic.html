@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            height: 300px;
+            background-color: lightgray;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>DOM - Document Object Model</h1>
+    <p> - HTMl 태그를 JavaScript로 추가/삭제/수정을 위한 방법을 제공</p>
+    <hr>
+    <h2>노드(태그) 생성하는 법</h2>
+    <h3>텍스트 노드가 있는 노드 생성</h3>
+    <button onclick="test1()">버튼</button>
+    <div id="div1" name="div1">
+        <!-- <h3>안녕하세요?</h3> -->
+    </div>
+    <script>
+        function test1() {
+            var elementH3 = document.createElement('h3');
+
+            var textNode = document.createTextNode('안녕');
+
+            elementH3.appendChild(textNode);
+        }
+
+
+
+
+    </script>
+    <h3>텍스트 노드가 없는 노드 생성 (대표 = img)</h3>
+    <button onclick="test2()">버튼</button>
+    <div id="div2">
+        <!-- <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"> -->
+    </div>
+    <script>
+        function test2(){
+            var div2 = getElementById('div2');
+            var img = document.createElement('img');
+            img.scr ="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
+            img.width = '100';
+            div2.appendChild(img);
+
+            div2.innerHTML +=  '<img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png">'
+        }
+
+
+    </script>
+    <hr>
+    <button onclick="test3()">실행</button>
+    <div id="div3"></div>  
+    <script>
+
+function test3(){
+        var div2 = getElementById('div2');
+        
+
+
+    }
+    </script> 
+   <h3>노드 삭제</h3>
+   <button onclick="test4()">실행</button>
+   <div id="div4"></div>
+   <script>
+       function test4() {
+           var div4 = document.getElementById('div4');
+           div4.remove();
+           // div4.style.display ='none';
+       }
+   </script>
+</body>
+
+</html>
