@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>레이아웃 기본요소 </h1>
+    <hr><br>
+
+    <h3>1. 높이 너비</h3>
+    <div>dythdml 너비를 </div>
+    <style>
+        .test1{
+            width: 200px;
+            height: 100px;
+            text-align: center;
+            border: black solid 1px;
+        }
+        .test2{
+            width: 30%;
+            height: 5em;
+            text-align: center;
+            border: black solid 1px;
+        }
+    </style>
+    <div class="test1">test1 영역입니다.</div>
+    <div class="test2">test2 영역입니다.</div>  
+    <hr><br>
+    <h3>2. 화면 배치요소 방법(block, inline)</h3>
+    <div> - block : 한줄 또는 영역으로 지정하는 요소로 시작태그와 끝 태그가 항상 존재</div>
+    <div> - inline : block 요소에 속해 있는 요소로 한 개의 요소를 수평으로 배치할때 사용</div>
+    <div> - 실무 Tip : block요소 = div태그 / inline = span태그로 감싸서 활용 할 것!</div>
+    <div> - display : lnline / block 요소의 속성을 변경할 때 사용. inline-block/none 속성 중요! </div>
+    <br>
+
+    <style>
+        .black-test1{
+            display: inline;
+        }
+        .black-test2{
+            display: inline-block;
+        }
+        .black-test3{
+            display: block;
+        }
+        .black-test4{
+            display: none;
+        }
+            .area {
+            width: 100px;
+            height: 100px;
+            background-color: salmon;
+            border: 1px solid black;
+        }
+        .area2 {
+            border: 1px solid black;
+            text-align: center;
+        }
+
+    </style>
+    <div class="area">일반 ㅇ영역</div>
+    <div class="area block-test1">div ㅇ영역 + inline</div>
+    <div class="area block-test2">div ㅇ영역 + inline-block</div>
+    <div class="area block-test3">div ㅇ영역 + inline</div>
+    <div class="area block-test4">div ㅇ영역 + inline</div>
+
+    <span class="area">일반 ㅇ영역</span>
+    <span class="area block-test1">div ㅇ영역 + inline</span>
+    <span class="area block-test2">div ㅇ영역 + inline-block</span>
+    <span class="area block-test3">div ㅇ영역 + inline</span>
+    <span class="area block-test4">div ㅇ영역 + inline</span>
+    <hr><br>
+
+
+    <h3>실무</h3>
+
+    <div class="area2" style="margin : 100px">
+    <span class="area2" style="display: inline-block; width: 200px; height: 100px;">
+    <a href="00_css01.html">link1 입니다.</a>
+    </span>
+    </div>
+    <div class="area2" style="margin : 100px">
+    <span class="area2" style="display: inline-block; width: 200px; height: 100px;">
+    <a href="00_css01.html">link1 입니다.</a>
+    </span>
+    </div>
+    <div class="area2" style="margin : 100px">
+    <span class="area2" style="display: inline-block; width: 200px; height: 100px;">
+    <a href="00_css01.html">link1 입니다.</a>
+    </span>
+    </div>
+    <div class="area2" style="margin : 100px">
+    <span class="area2" style="display: inline-block; width: 200px; height: 100px;">
+    <a href="00_css01.html">link1 입니다.</a>
+    </span>
+    </div>
+    <div class="area2" style="margin : 100px">
+    <span class="area2" style="display: inline-block; width: 200px; height: 100px;">
+    <a href="00_css01.html">link1 입니다.</a>
+    </span>
+    </div>
+    
+    
+    
+
+
+
+
+
+
+
+
+
+</body>
+</html>
